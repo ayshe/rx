@@ -21,24 +21,14 @@ Node::~Node() {
 	// TODO Auto-generated destructor stub
 }
 
-void Node::execute() {
-	cout << "Exec node" + to_string(this->id) << endl;
-	if (false) {
-		cout << "Case TRUE ... ";
-		if (NULL != this->ifTrue) {
-			ifTrue->execute();
-		} else {
-			cout << "End program";
-		}
+Node* Node::execute() {
+	Node *next;
+	if (this->eval()) {
+		return this->ifTrue;
 	} else {
-		cout << "Case FALSE ... " << endl;
-		if (NULL != this->ifFalse) {
-			ifFalse->execute();
-		} else {
-			cout << "End program" << endl;
-		}
+		return this->ifFalse;
 	}
-	cout << endl;
+	return next;
 }
 
 void Node::setTrue(Node *node) {
@@ -47,4 +37,8 @@ void Node::setTrue(Node *node) {
 
 void Node::setFalse(Node *node) {
 	this->ifFalse = node;
+}
+
+bool Node::eval() {
+	return true;
 }

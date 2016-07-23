@@ -8,6 +8,9 @@
 
 #include <iostream>
 #include "Node.h"
+#include "runner/Runner.h"
+#include "impl/Blue.h"
+#include "impl/Red.h"
 
 using namespace std;
 
@@ -29,7 +32,9 @@ void create() {
 }
 
 int main() {
-	create();
-	entrypoint->execute();
+	Runner *runner = new Runner();
+	runner->registerAcp(new Red());
+	runner->registerAcp(new Blue());
+	runner->run();
 	return 0;
 }

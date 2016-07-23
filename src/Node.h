@@ -14,11 +14,12 @@ public:
 	virtual ~Node();
 	void setTrue(Node *node);
 	void setFalse(Node *node);
-	void execute();
+	Node* execute();
 private:
 	int id;
 	Node *ifTrue;
 	Node *ifFalse;
+	bool eval();
 };
 
 #endif /* NODE_H_ */
