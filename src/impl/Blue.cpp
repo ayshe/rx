@@ -4,10 +4,13 @@
  *  Created on: Jul 22, 2016
  *      Author: fox
  */
+#include <iostream>
 
 #include "Blue.h"
 
-Blue::Blue() : super() {
+using namespace std;
+
+Blue::Blue() {
 	// TODO Auto-generated constructor stub
 	this->initialise();
 }
@@ -17,19 +20,19 @@ Blue::~Blue() {
 }
 
 void Blue::initialise() {
-	Node *node1 = new Node(1);
-	Node *node2 = new Node(2);
-	Node *node3 = new Node(3);
+	RangeNode *node1 = new RangeNode(1, -30, 30);
+	RangeNode *node2 = new RangeNode(2, 0, 180);
+	TurnNode *node3 = new TurnNode(3, 1);
+	TurnNode *node4 = new TurnNode(4, -1);
 
-	node1->setTrue(node2);
-	node1->setFalse(node3);
+	node1->setFalse(node2);
 
 	node2->setTrue(node3);
-
-	node3->setFalse(node2);
+	node2->setFalse(node4);
 
 	this->addNode(node1);
 	this->addNode(node2);
 	this->addNode(node3);
+	this->addNode(node4);
 }
 

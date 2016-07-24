@@ -8,6 +8,11 @@
 #ifndef NODE_H_
 #define NODE_H_
 
+#include <iostream>
+#include <string>
+#include "Entity.h"
+
+
 class Node {
 public:
 	Node(int id);
@@ -15,11 +20,15 @@ public:
 	void setTrue(Node *node);
 	void setFalse(Node *node);
 	Node* execute();
-private:
+	void setEntity(Entity *entity);
+	Entity *getEntity();
+protected:
+	Entity *entity;
 	int id;
 	Node *ifTrue;
 	Node *ifFalse;
-	bool eval();
+private:
+	virtual bool eval();
 };
 
 #endif /* NODE_H_ */

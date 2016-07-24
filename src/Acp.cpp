@@ -5,8 +5,13 @@
  *      Author: fox
  */
 
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
 #include <stddef.h>
 #include "Acp.h"
+
+using namespace std;
 
 //Autonomous Combat Platform
 
@@ -14,6 +19,7 @@ Acp::Acp() {
 	// Super must be called
 	nodeCount = 0;
 	entrypoint = NULL;
+	this->hp = 100;
 }
 
 Acp::~Acp() {
@@ -29,6 +35,7 @@ void Acp::setEntrypoint(Node *node) {
 }
 
 void Acp::addNode(Node *node) {
+	node->setEntity(this);
 	if (this->nodeCount > MAX_NEXUS_SIZE) {
 		return;
 	}

@@ -9,11 +9,15 @@
 #define ACP_H_
 
 #include "constants.h"
+#include "Entity.h"
 #include "Node.h"
+#include "Target.h"
+#include "nodes/RangeNode.h"
+#include "nodes/TurnNode.h"
 
-class Acp {
+
+class Acp: public Entity {
 public:
-	typedef Acp super;
 	Acp();
 	virtual ~Acp();
 	Node *getEntrypoint();
@@ -25,6 +29,7 @@ private:
 	int nodeCount;
 	Node *entrypoint;
 	Node *nexus[MAX_NEXUS_SIZE];
+	int hp;
 };
 
 #endif /* ACP_H_ */

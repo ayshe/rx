@@ -17,6 +17,7 @@ public:
 	void registerAcp(Acp *acp);
 	void run();
 private:
+	void calculatePositions();
 	Acp *acp[MAX_ACP_COUNT];
 	Node *node[MAX_ACP_COUNT];
 	int acpCount;

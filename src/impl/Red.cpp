@@ -7,7 +7,7 @@
 
 #include "Red.h"
 
-Red::Red() : super() {
+Red::Red() {
 	// TODO Auto-generated constructor stub
 	this->initialise();
 }
@@ -17,18 +17,18 @@ Red::~Red() {
 }
 
 void Red::initialise() {
-	Node *node1 = new Node(1);
-	Node *node2 = new Node(2);
-	Node *node3 = new Node(3);
+	RangeNode *node1 = new RangeNode(1, -30, 30);
+	RangeNode *node2 = new RangeNode(2, 0, 180);
+	TurnNode *node3 = new TurnNode(3, 2);
+	TurnNode *node4 = new TurnNode(4, -2);
 
-	node1->setTrue(node3);
 	node1->setFalse(node2);
 
-	node2->setTrue(node2);
-
-	node3->setFalse(node3);
+	node2->setTrue(node3);
+	node2->setFalse(node4);
 
 	this->addNode(node1);
 	this->addNode(node2);
 	this->addNode(node3);
+	this->addNode(node4);
 }

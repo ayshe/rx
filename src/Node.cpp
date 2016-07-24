@@ -5,8 +5,6 @@
  *      Author: fox
  */
 
-#include <iostream>
-#include <string>
 #include "Node.h"
 
 using namespace std;
@@ -15,20 +13,27 @@ Node::Node(int id) {
 	this->id = id;
 	this->ifTrue = NULL;
 	this->ifFalse = NULL;
+	this->entity = NULL;
 }
 
 Node::~Node() {
 	// TODO Auto-generated destructor stub
 }
 
+void Node::setEntity(Entity *entity) {
+	this->entity = entity;
+}
+
+Entity * Node::getEntity() {
+	return this->entity;
+}
+
 Node* Node::execute() {
-	Node *next;
 	if (this->eval()) {
 		return this->ifTrue;
 	} else {
 		return this->ifFalse;
 	}
-	return next;
 }
 
 void Node::setTrue(Node *node) {
@@ -40,5 +45,6 @@ void Node::setFalse(Node *node) {
 }
 
 bool Node::eval() {
+	cout << "## DEFAULT" << endl;
 	return true;
 }
