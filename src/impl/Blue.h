@@ -12,7 +12,7 @@
 
 class Blue: public Acp {
 public:
-	Blue();
+	Blue(int id);
 	virtual ~Blue();
 private:
 	void initialise();

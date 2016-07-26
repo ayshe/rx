@@ -7,7 +7,7 @@
 
 #include "Red.h"
 
-Red::Red() {
+Red::Red(int id) : Acp(id) {
 	// TODO Auto-generated constructor stub
 	this->initialise();
 }

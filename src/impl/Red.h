@@ -12,7 +12,7 @@
 
 class Red: public Acp {
 public:
-	Red();
+	Red(int id);
 	virtual ~Red();
 private:
 	void initialise();

@@ -34,8 +34,9 @@ void create() {
 int main() {
 	std::srand(time(0)); // use current time as seed for random generator
 	Runner *runner = new Runner();
-	runner->registerAcp(new Blue());
-	runner->registerAcp(new Red());
+	runner->registerAcp(new Blue(1));
+	runner->registerAcp(new Blue(2));
+	//runner->registerAcp(new Red(3));
 	runner->run();
 	return 0;
 }

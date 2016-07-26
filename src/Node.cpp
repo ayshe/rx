@@ -13,19 +13,19 @@ Node::Node(int id) {
 	this->id = id;
 	this->ifTrue = NULL;
 	this->ifFalse = NULL;
-	this->entity = NULL;
+	this->combatant = NULL;
 }
 
 Node::~Node() {
 	// TODO Auto-generated destructor stub
 }
 
-void Node::setEntity(Entity *entity) {
-	this->entity = entity;
+void Node::setCombatant(Combatant *combatant) {
+	this->combatant = combatant;
 }
 
-Entity * Node::getEntity() {
-	return this->entity;
+Combatant * Node::getCombatant() {
+	return this->combatant;
 }
 
 Node* Node::execute() {

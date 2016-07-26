@@ -19,7 +19,7 @@ TurnNode::~TurnNode() {
 
 bool TurnNode::eval() {
 	cout << "## TURN" << endl;
-	this->entity->turn(this->delta);
+	this->combatant->turn(this->delta);
 	return true;
 }
 

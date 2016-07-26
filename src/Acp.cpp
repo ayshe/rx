@@ -15,11 +15,13 @@ using namespace std;
 
 //Autonomous Combat Platform
 
-Acp::Acp() {
+Acp::Acp(int id) {
 	// Super must be called
-	nodeCount = 0;
-	entrypoint = NULL;
-	this->hp = 100;
+	this->nodeCount = 0;
+	this->entrypoint = NULL;
+	this->id = id;
+	cout << "Initialised Combatant " + to_string(id) + " at " + to_string(this->getX()) + ", " + to_string(this->getY()) << endl;
+
 }
 
 Acp::~Acp() {
@@ -30,12 +32,16 @@ void Acp::initialise() {
 	// Stub
 }
 
+int Acp::getId() {
+	return this->id;
+}
+
 void Acp::setEntrypoint(Node *node) {
 	this->entrypoint = node;
 }
 
 void Acp::addNode(Node *node) {
-	node->setEntity(this);
+	node->setCombatant(this);
 	if (this->nodeCount > MAX_NEXUS_SIZE) {
 		return;
 	}

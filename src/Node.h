@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <string>
-#include "Entity.h"
+#include "Combatant.h"
 
 
 class Node {
@@ -20,10 +20,10 @@ public:
 	void setTrue(Node *node);
 	void setFalse(Node *node);
 	Node* execute();
-	void setEntity(Entity *entity);
-	Entity *getEntity();
+	void setCombatant(Combatant *combatant);
+	Combatant *getCombatant();
 protected:
-	Entity *entity;
+	Combatant *combatant;
 	int id;
 	Node *ifTrue;
 	Node *ifFalse;

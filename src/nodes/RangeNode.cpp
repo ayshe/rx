@@ -21,5 +21,5 @@ RangeNode::~RangeNode() {
 
 bool RangeNode::eval() {
 	cout << "## RANGE" << endl;
-	return this->entity->targetInRange(this->from, this->to);
+	return this->combatant->targetInRange(this->from, this->to);
 }

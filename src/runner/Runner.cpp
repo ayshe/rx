@@ -34,9 +34,10 @@ void Runner::registerAcp(Acp *acp) {
 
 void Runner::run() {
 	while (this->executions < MAX_EXECUTIONS) {
+		cout << "EXEC " + to_string(this->executions) << endl;
+		this->executions ++;
 		this->calculatePositions();
 		for (int i=0; i<this->acpCount; i++) {
-			this->executions ++;
 			Node *toExecute = this->node[i];
 			if (toExecute == NULL) {
 				toExecute = this->acp[i]->getEntrypoint();
@@ -51,16 +52,18 @@ void Runner::run() {
 void Runner::calculatePositions() {
 	for (int i=0; i<this->acpCount; i++) {
 		Acp *thisACP = this->acp[i];
-		this->acp[i]->clearTargets();
+		thisACP->clearTargets();
 		for (int t=0; t<this->acpCount; t++) {
 			if (t != i) {
 				Acp *thatACP = this->acp[t];
-				float bearing = (atan2(thisACP->getY() - thatACP->getY(), thisACP->getX() - thatACP->getX())) * 180 / M_PI;
-				float range = sqrt((thatACP->getX() - thisACP->getX())*(thatACP->getX() - thisACP->getX()) + (thatACP->getY() - thisACP->getY())*(thatACP->getY()- thisACP->getY()));
-				this->acp[i]->addTarget(new Target(t, bearing, range));
-				//cout << "Target ACP" + to_string(t) + " bearing " + to_string(bearing) + " range " + to_string(range) << endl;
+				if (!thatACP->isDestroyed()) {
+					float bearing = (atan2(thatACP->getY() - thisACP->getY(), thatACP->getX() - thisACP->getX())) * 180 / M_PI;
+					float range = sqrt((thatACP->getX() - thisACP->getX())*(thatACP->getX() - thisACP->getX()) + (thatACP->getY() - thisACP->getY())*(thatACP->getY()- thisACP->getY()));
+					thisACP->addTarget(thatACP, new Target(t, bearing, range));
+					cout << "I am ACP" + to_string(thisACP->getId()) + ":: Target ACP" + to_string(thatACP->getId()) + " bearing " + to_string(bearing) + " range " + to_string(range) << endl;
+				}
 			}
 		}
-		this->acp[i]->setPrimaryTarget();
+		thisACP->setPrimaryTarget();
 	}
 }
