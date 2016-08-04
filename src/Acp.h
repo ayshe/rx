@@ -22,11 +22,13 @@ public:
 	Acp(int id);
 	virtual ~Acp();
 	int getId();
+	int getClip();
 	Node *getEntrypoint();
 protected:
 	void setEntrypoint(Node *node);
 	void addNode(Node *node);
 	virtual void initialise();
+	int clip;
 private:
 	int id;
 	int nodeCount;

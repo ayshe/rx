@@ -19,8 +19,8 @@ Combatant::Combatant() {
 	this->primaryCombatant = NULL;
 	this->bearing = 0;
 	this->hp = 100;
-	this->x = std::rand() % 100;
-	this->y = std::rand() % 100;
+	this->x = std::rand() % 200;
+	this->y = std::rand() % 200;
 }
 
 Combatant::~Combatant() {
@@ -29,10 +29,16 @@ Combatant::~Combatant() {
 
 void Combatant::turn(int delta) {
 	this->bearing += delta;
+	while (this->bearing > 180) {
+		this->bearing -= 360;
+	}
+	while (this->bearing < -180) {
+		this->bearing += 360;
+	}
 }
 void Combatant::clearTargets() {
 	for (int i=0; i<targetCount; i++) {
-		delete this->target[i];
+		//delete this->target[i];
 	}
 	this->targetCount = 0;
 }
@@ -89,17 +95,17 @@ bool Combatant::targetInRange(float from, float to) {
 		cout << "Primary target is not set" << endl;
 		return false;
 	}
-	float targetBearing =  this->primaryTarget->getBearing() - this->bearing;
+	float targetBearing =  this->primaryTarget->getBearing();
 	while (targetBearing > 180) {
 		targetBearing -= 360;
 	}
 	while (targetBearing < -180) {
 		targetBearing += 360;
 	}
+
 	cout << "Target bearing " + to_string(this->primaryTarget->getBearing()) << endl;
 	cout << "My bearing " + to_string(this->bearing) << endl;
-	cout << "Relative bearing " + to_string(targetBearing) << endl;
-	return targetBearing > from && targetBearing < to;
+	return targetBearing > (this->bearing + from) && targetBearing < (this->bearing + to);
 }
 
 int Combatant::getX() {
@@ -108,5 +114,9 @@ int Combatant::getX() {
 
 int Combatant::getY() {
 	return this->y;
+}
+
+int Combatant::getBearing() {
+	return this->bearing;
 }
 

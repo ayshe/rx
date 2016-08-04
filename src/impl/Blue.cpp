@@ -13,6 +13,7 @@ using namespace std;
 Blue::Blue(int id) : Acp(id) {
 	// TODO Auto-generated constructor stub
 	this->initialise();
+	this->clip = 2;
 }
 
 Blue::~Blue() {
@@ -20,10 +21,10 @@ Blue::~Blue() {
 }
 
 void Blue::initialise() {
-	RangeNode *node1 = new RangeNode(1, -30, 30);
+	RangeNode *node1 = new RangeNode(1, -5, 5);
 	RangeNode *node2 = new RangeNode(2, 0, 180);
-	TurnNode *node3 = new TurnNode(3, 10);
-	TurnNode *node4 = new TurnNode(4, -10);
+	TurnNode *node3 = new TurnNode(3, 1);
+	TurnNode *node4 = new TurnNode(4, -1);
 	FireNode *node5 = new FireNode(5);
 
 	node1->setTrue(node5);

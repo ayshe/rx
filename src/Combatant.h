@@ -17,6 +17,7 @@ public:
 	virtual ~Combatant();
 	int getX();
 	int getY();
+	int getBearing();
 	void clearTargets();
 	void addTarget(Combatant *combatant, Target *target);
 	void setPrimaryTarget();

@@ -32,6 +32,13 @@ void Acp::initialise() {
 	// Stub
 }
 
+int Acp::getClip() {
+	if (this->isDestroyed()) {
+		return 3;
+	}
+	return this->clip;
+}
+
 int Acp::getId() {
 	return this->id;
 }

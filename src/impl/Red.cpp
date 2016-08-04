@@ -10,6 +10,7 @@
 Red::Red(int id) : Acp(id) {
 	// TODO Auto-generated constructor stub
 	this->initialise();
+	this->clip = 1;
 }
 
 Red::~Red() {

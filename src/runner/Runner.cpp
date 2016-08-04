@@ -17,7 +17,6 @@ using namespace std;
 Runner::Runner() : node() {
 	// TODO Auto-generated constructor stub
 	this->acpCount = 0;
-	this->executions = 0;
 }
 
 Runner::~Runner() {
@@ -33,11 +32,10 @@ void Runner::registerAcp(Acp *acp) {
 }
 
 void Runner::run() {
-	while (this->executions < MAX_EXECUTIONS) {
-		cout << "EXEC " + to_string(this->executions) << endl;
-		this->executions ++;
-		this->calculatePositions();
-		for (int i=0; i<this->acpCount; i++) {
+	this->calculatePositions();
+	for (int i=0; i<this->acpCount; i++) {
+		Acp *thisACP = this->acp[i];
+		if (!thisACP->isDestroyed()) {
 			Node *toExecute = this->node[i];
 			if (toExecute == NULL) {
 				toExecute = this->acp[i]->getEntrypoint();
@@ -53,6 +51,7 @@ void Runner::calculatePositions() {
 	for (int i=0; i<this->acpCount; i++) {
 		Acp *thisACP = this->acp[i];
 		thisACP->clearTargets();
+		this->render(thisACP);
 		for (int t=0; t<this->acpCount; t++) {
 			if (t != i) {
 				Acp *thatACP = this->acp[t];
@@ -67,3 +66,13 @@ void Runner::calculatePositions() {
 		thisACP->setPrimaryTarget();
 	}
 }
+
+void Runner::setRenderer(SDL_Texture *image, SDL_Renderer *renderer) {
+	this->image = image;
+	this->renderer = renderer;
+}
+
+void Runner::render(Acp* acp) {
+	renderTexture(this->image, this->renderer, acp->getX(), acp->getY(), acp->getBearing(), acp->getClip());
+}
+
