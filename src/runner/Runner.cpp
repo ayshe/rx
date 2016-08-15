@@ -31,6 +31,10 @@ void Runner::registerAcp(Acp *acp) {
 	this->acpCount++;
 }
 
+void Runner::dropAll() {
+	this->acpCount = 0;
+}
+
 void Runner::run() {
 	this->calculatePositions();
 	for (int i=0; i<this->acpCount; i++) {
@@ -47,11 +51,18 @@ void Runner::run() {
 	}
 }
 
+void Runner::draw() {
+	this->calculatePositions();
+	for (int i=0; i<this->acpCount; i++) {
+		Acp *thisACP = this->acp[i];
+		this->render(thisACP);
+	}
+}
+
 void Runner::calculatePositions() {
 	for (int i=0; i<this->acpCount; i++) {
 		Acp *thisACP = this->acp[i];
 		thisACP->clearTargets();
-		this->render(thisACP);
 		for (int t=0; t<this->acpCount; t++) {
 			if (t != i) {
 				Acp *thatACP = this->acp[t];

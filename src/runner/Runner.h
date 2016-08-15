@@ -20,7 +20,9 @@ public:
 	virtual ~Runner();
 	void registerAcp(Acp *acp);
 	void run();
+	void draw();
 	void setRenderer(SDL_Texture *image, SDL_Renderer *renderer);
+	void dropAll();
 private:
 	void calculatePositions();
 	Acp *acp[MAX_ACP_COUNT];
